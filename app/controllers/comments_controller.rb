@@ -9,10 +9,7 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to post_path(@post), notice: 'Comment created!'
         else
-            @comments = @post.comments.order(created_at: :desc)
-            
             render '/posts/show'
-            
         end
     end
     
