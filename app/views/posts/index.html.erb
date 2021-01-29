@@ -4,12 +4,9 @@
   <div class="row">
     <% @posts.each do |post|%>
       <div class="col-xs-3 col-md-4">
-        <div class="box ">
-          
-          <h4><%= link_to(post.title, post_path(post.id) )%></h4>
-          
-          <p class="text-hide"> <%= post.body %></p>
-
+        <div class="box ">   
+          <h4 class="card-title d-flex flex-column"><%= link_to(post.title, post_path(post.id) )%></h4>
+          <p class="text-hide d-flex flex-column card-body"> <%= post.body %></p>
         </div>
       </div>
     <% end %>

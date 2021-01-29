@@ -8,6 +8,12 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new post_params
+        if @post.save
+            flash[:notice] = "Product created sucessfully."
+            redirect_to post_path(@post.id)
+        else
+            render :new
+        end
     end
 
     def index
@@ -15,6 +21,7 @@ class PostsController < ApplicationController
     end
 
     def show
+        @comment = Comment.new
     end
 
     def edit
@@ -36,7 +43,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        parms.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body)
     end
 
     def find_post

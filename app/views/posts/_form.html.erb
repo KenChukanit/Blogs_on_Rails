@@ -1,0 +1,21 @@
+
+<% if @post.errors.present? %>
+  <p>
+    <%= @post.errors.full_messages.join(', ')%>
+  </p>
+<% end %>
+
+<%= form_with model: @post, :class=>"form-group", local:true do |f| %>
+  <div class='input-group mb-4  mt-4'>
+    <%= f.label :title %>
+    <%= f.text_field(:title, class: 'form-control')%>
+  </div>
+  <div class='input-group mb-4  mt-4'>
+    <%= f.label :body %>
+    <%= f.text_area(:body, class: 'form-control', cols: 50, rows: 5)%>
+  </div>
+ 
+<%=f.submit  class: 'btn btn-primary' %> 
+
+<% end %>
+
