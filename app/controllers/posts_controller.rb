@@ -36,8 +36,11 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post.destroy
+        if @post.destroy
         redirect_to posts_path
+        else  
+            render :show
+        end
     end
 
     private
