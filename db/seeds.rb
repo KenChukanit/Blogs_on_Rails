@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+Post.delete_all
+
+NUM_OF_POSTS = 50
+
+BODY_50_CHARS = "I am the body. I have to be 50 characters. So, I have to be here to help the seed to be success."
+
+NUM_OF_POSTS.times do
+    created_at = Faker::Date.backward(days: 30)
+    p = Post.create(
+        title: Faker::Hacker.say_something_smart,
+        body: BODY_50_CHARS
+    )
+end
+
+posts = Post.all
+
+puts Cowsay.say("Created #{posts.count} posts", :koala)
