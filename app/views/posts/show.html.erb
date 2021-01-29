@@ -1,37 +1,39 @@
-<div class='shadow-sm p-3 mb-5 bg-white rounded overflow-wrap'>
-  <div class='clearfix'>
-    <h2 class='float-left'>
-
-      <%= @post.title %>
-    </h2>
-
-  
-  </div>
-
-  <p class='shadow-none p-3 rounded'><%= @post.body %></p>
-
-    <small class='text-muted mb-4'>
-    Posted <em><%= time_ago_in_words(@post.created_at) %></em>
-  <small>
-<br>
-<br>
-    <%= link_to("Delete",
+<div class=' flex-column flex-start show-post mb-4'>
+  <div>
+      <h2 >
+        <%= @post.title %>
+      </h2>
+      <p class=' d-flex flex-start'>
+        <%= @post.body %>
+      </p>
+      <small class='text-muted mb-4 d-flex flex-start mr-2'>
+        <em>Posted:   <%= time_ago_in_words(@post.created_at) %> Ago</em>
+      <small>
+      <br>
+      <br>
+      <%= link_to("Delete",
         post_path(@post),
         method: :delete,
-        class: 'btn btn-danger',
+        class: 'btn btn-outline-primary  mr-4',
         data: { confirm: 'are you sure?' },
-    )
-    %>
-    <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-info'%>
+      )
+      %>  
+      <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-outline-primary '%>
+  </div>
 </div>
 
-<p class='text-muted'>Comment</p>
-<div class='shadow-sm p-3 mb-5 bg-white rounded'>
-  <%= form_with model: [@post, @comment], local: true do |f| %>
-    <div class='form-group mb-4'>
-      <%= f.label :body %>
-      <%= f.text_area(:body, class: 'form-control', placeholder: 'What\'s on your mind?' )%>
-    </div>
-    <%= f.submit "Submit", class: 'btn btn-primary' %>
-  <% end %>
-</div>
+<h3 class="d-flex flex-start" >Comment</h3>
+
+
+<form>
+ <%= form_with model: [@post, @comment], local: true do |f| %>
+
+  <div class="form-group mb-4">
+
+    <%= f.text_area(:body, class: 'form-control', cols: 150, rows: 4)%>
+  </div>
+
+<%=f.submit  "Submit", class: 'btn btn-outline-primary d-flex flex-start' %> 
+
+<% end %>
+</form>

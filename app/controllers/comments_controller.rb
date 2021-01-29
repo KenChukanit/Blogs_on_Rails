@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    before_action   :find_comment,   :only[:destroy]
 
     def create
         @post = Post.find params[:post_id]
@@ -14,9 +15,8 @@ class CommentsController < ApplicationController
             
         end
     end
+    
     def destroy
-        @post = Post.find params[:post_id]
-        @comment = Comment.find params[:id]
 
         if @comment.destroy
         redirect_to post_path(@post), notice: "Comment deleted"
@@ -29,6 +29,11 @@ class CommentsController < ApplicationController
 
     def comment_params
         params.require(:comment).permit(:body)
+    end
+
+    def find_comment
+        @post = Post.find params[:post_id]
+        @comment = Comment.find params[:id]
     end
 
 end

@@ -23,3 +23,21 @@ body {
     text-overflow: ellipsis;
     color: black;
     }
+
+    .nav-post{
+      background: rgb(233, 230, 230) ;
+      border: 2px #ccc ;
+      font-size: 22px;
+      color: rgb(95, 139, 235);
+      padding: 1%;
+      }
+
+      .show-post{
+        background: rgb(250, 249, 249) ;
+        border: 2px #ccc ;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgb(2, 6, 14);
+        padding: 1%;
+        }
