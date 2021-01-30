@@ -41,3 +41,27 @@ body {
         color: rgb(2, 6, 14);
         padding: 1%;
         }
+
+        .comment-text{
+          background: rgb(250, 249, 249) ;
+          border: 2px #ccc ;
+          font-size: 15px;
+          color: rgb(2, 6, 14);
+          padding: 1%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: flex-start;
+          }
+
+          .comment-time{
+            background: rgb(250, 249, 249) ;
+            border: 2px #ccc ;
+            font-size: 9px;
+            color: rgb(86, 87, 88);
+            padding: 1%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: flex-start;
+            }

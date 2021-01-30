@@ -22,24 +22,38 @@
   </div>
 </div>
 
+
+<div>
 <h3 class="d-flex flex-start" >Comment</h3>
-
-<form>
- <%= form_with model: [@post, @comment], local: true do |f| %>
-  <div class="form-group mb-4">
-    <%= f.text_area(:body, class: 'form-control', cols: 150, rows: 4)%>
-  </div>
-<%=f.submit  "Submit", class: 'btn btn-outline-primary d-flex flex-start' %> 
+  <%= form_with model: [@post, @comment], local: true do |f| %>
+  <% if @comment.errors.full_messages.each do |msg|%>
+    <li>
+        <%= msg %>
+    </li>
 <% end %>
-</form>
+<% end %>
+    <div class="form-group mb-4">
+      <%= f.text_area(:body, class: 'form-control', cols: 150, rows: 4)%>
+    </div>
+      <%=f.submit  "Submit", class: 'btn btn-outline-primary d-flex flex-start' %> 
+    <% end %>
+</div>
+<br>
 
-<% @comments.each do |comment|%>
-<p>
-<%= comment.body %>
-
-
-<%= link_to "Delete",post_comment_path(@post,comment), method: :delete,data: {confirm: "Are you sure?"} %>
-
-<hr>
-</p>
+<% @comments.each do |comment|%>  
+<div  class=' d-flex flex-column  flex-start  '>
+    <div class="comment-text">
+      <%= comment.body %>
+      <span class="comment-time ">
+        <small class='text-muted mb-4 d-flex flex-start mr-2'>
+        <em>Commented:   <%= time_ago_in_words(comment.created_at) %> Ago</em>
+        ••• 
+        <%= link_to "Delete",post_comment_path(@post,comment), method: :delete,data: {confirm: "Are you sure?"} %>
+        </small>
+      </span>
+    </div>
+</div>
 <% end %> 
+
+
+

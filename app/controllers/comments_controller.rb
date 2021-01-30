@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action   :find_comment,   :only[:destroy]
+    before_action   :find_comment,   only: [:destroy]
 
     def create
         @post = Post.find params[:post_id]
@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
     end
     
     def destroy
-
         if @comment.destroy
         redirect_to post_path(@post), notice: "Comment deleted"
         else  
