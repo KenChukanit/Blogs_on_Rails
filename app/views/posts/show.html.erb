@@ -7,7 +7,7 @@
         <%= @post.body %>
       </p>
       <small class='text-muted mb-4 d-flex flex-start mr-2'>
-        <em>Posted:   <%= time_ago_in_words(@post.created_at) %> Ago</em>
+        <em>Posted:   <%= time_ago_in_words(@post.created_at) %> ago</em>
       <small>
       <br>
       <br>
@@ -41,19 +41,17 @@
 <br>
 
 <% @comments.each do |comment|%>  
-<div  class=' d-flex flex-column  flex-start  '>
-    <div class="comment-text">
+<div  class=' d-flex  '>
+    <div class="d-sm-flex align-self-start flex-column comment-text">
       <%= comment.body %>
-      <span class="comment-time ">
+      <span class=" d-sm-flex align-self-start flex-column comment-time">
         <small class='text-muted mb-4 d-flex flex-start mr-2'>
-        <em>Commented:   <%= time_ago_in_words(comment.created_at) %> Ago</em>
+        <em>Commented:   <%= time_ago_in_words(comment.created_at) %> ago</em>
         ••• 
-        <%= link_to "Delete",post_comment_path(@post,comment), method: :delete,data: {confirm: "Are you sure?"} %>
+        <%= link_to "Delete",post_comment_path(@post,comment), method: :delete,data: {confirm: "Are you sure to delete this comment?"} %>
         </small>
       </span>
     </div>
 </div>
 <% end %> 
-
-
 
