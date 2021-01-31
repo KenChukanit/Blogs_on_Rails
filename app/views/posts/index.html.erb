@@ -3,7 +3,7 @@
     <% @posts.each do |post|%>
       <div class="col-xs-3 d-md-flex col-md-4">
         <div class="box flex-column">   
-          <h4 class="card-title "><%= link_to(post.title, post_path(post.id) )%></h4>
+          <h4 class="card-title removelinkdefault"><%= link_to(post.title, post_path(post.id) )%></h4>
           <p class="card-body text-hide"> <%= post.body %></p>
         </div>
       </div>

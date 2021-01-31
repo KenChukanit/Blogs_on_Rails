@@ -1,14 +1,14 @@
 
-<nav class="row mb-2" >
-    <div class="col d-flex flex-start nav-post">
+<nav class="d-flex justify-content-between mr-4 mt-4 mb-4 nav-post" >
+    <div class=" d-sm-flex flex-row  col-md-9 flex-start  ">
     <!-- To Index Page -->
         <%= link_to "Blog On Rails", posts_path %>
     </div>
-    <div class="col-md-auto d-flex nav-post">
+    <div class=" flex-row col-md-1 ">
     <!-- To Index Page -->
         <%= link_to "Home", posts_path%>
     </div>
-    <div class="col col-md-auto d-flex nav-post">
+    <div class="flex-row col-md-2 ">
     <!-- To New Page -->
         <%= link_to "New Post", new_post_path%>
     </div>

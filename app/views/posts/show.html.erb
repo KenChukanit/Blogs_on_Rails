@@ -1,6 +1,6 @@
 <div class=' flex-column flex-start show-post mb-4'>
   <div>
-      <h2 >
+      <h2 class="mb-4">
         <%= @post.title %>
       </h2>
       <p class=' d-flex flex-start'>
@@ -11,14 +11,14 @@
       <small>
       <br>
       <br>
+      <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-outline-primary '%>
       <%= link_to("Delete",
         post_path(@post),
         method: :delete,
         class: 'btn btn-outline-primary  mr-4',
-        data: { confirm: 'are you sure?' },
+        data: { confirm: 'are you sure to delete this post?' },
       )
       %>  
-      <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-outline-primary '%>
   </div>
 </div>
 
@@ -46,8 +46,8 @@
       <%= comment.body %>
       <span class=" d-sm-flex align-self-start flex-column comment-time">
         <small class='text-muted mb-4 d-flex flex-start mr-2'>
-        <em>Commented:   <%= time_ago_in_words(comment.created_at) %> ago</em>
-        ••• 
+        <em>Commented: <%= time_ago_in_words(comment.created_at) %> ago</em>
+          ••• 
         <%= link_to "Delete",post_comment_path(@post,comment), method: :delete,data: {confirm: "Are you sure to delete this comment?"} %>
         </small>
       </span>

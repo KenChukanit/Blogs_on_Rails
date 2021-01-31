@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
     def update
         if @post.update post_params
+            flash[:notice] = "Post updated."
             redirect_to post_path(@post.id)
         else 
             render :edit
@@ -38,6 +39,7 @@ class PostsController < ApplicationController
 
     def destroy
         if @post.destroy
+            flash[:alert] = "Post deleted."
         redirect_to posts_path
         else  
             render :show
