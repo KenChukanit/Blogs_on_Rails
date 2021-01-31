@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     end
 
     def change_password
+        
     end
 
     def do_change_password
@@ -39,7 +40,26 @@ class UsersController < ApplicationController
             redirect_to user_change_password_path(@user)
             return
         end
-        if  @user.authenticate(params[:user][:new_password])  == @user.authenticate(params[:password])
+
+        if params[:user][:current_password].present? == false ||
+            params[:user][:new_password].present? == false ||
+            params[:user][:new_password_confirmation].present? == false
+            flash[:alert] = "Please fill all the required password." 
+            redirect_to user_change_password_path(@user)
+            return
+        end
+
+        if params[:user][:current_password] == params[:user][:new_password]
+            flash[:alert] = "Cannot use the same password." 
+            redirect_to user_change_password_path(@user)
+            return
+        end
+
+        @current_password = params[:user][:current_password]  
+        encrypted_password = BCrypt::Password.create(@current_password) 
+
+
+        if  @user.authenticate(params[:user][:new_password]) == @user.authenticate(params[:password])#check again
             @user.update(password: params[:user][:new_password],
                         password_confirmation: params[:user][:new_password_confirmation] )
             @user.save
@@ -47,7 +67,7 @@ class UsersController < ApplicationController
                 format.html { redirect_to root_path, notice: 'Your password has been changed.' }
             end
         else
-            flash[:alert] = "Invalid password, must be at least 6 charactors." 
+            flash[:alert] = "Invalid password." 
             redirect_to user_change_password_path(@user)
         end
     end
