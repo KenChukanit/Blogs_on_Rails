@@ -1,0 +1,21 @@
+<h1>User Edit Form</h1>
+<%= form_with model: @user, local:true do |f|%>
+<% if @user.errors.any? %>
+<p>
+    <%= @user.errors.full_messages.join(', ')%>
+</p>
+<% end %>
+
+<div>
+    <%= f.label :name  %> 
+    <%= f.text_field :name  %> 
+</div>
+<div>
+    <%= f.label :email  %> 
+    <%= f.email_field :email  %> 
+</div>
+
+<%= f.submit "Update Profile"%>
+<% end %>
+
+<%= link_to "Change Password"  ,user_change_password_path(@user),data: {confirm: "Are you sure to change your password?"}%>
