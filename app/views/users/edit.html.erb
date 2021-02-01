@@ -14,15 +14,7 @@
         <label class="d-flex flex-start" >Email</label>
         <%= f.email_field(:email, class: 'form-control')%>
     </div>
-      <div class="form-group mb-4">
-        <label class="d-flex flex-start" >Password</label>
-        <%= f.hidden_field(:password, value: @user.password_digest)%>
-    </div>
-    <div class="form-group mb-4">
-        <label class="d-flex flex-start" >Password Confirmation</label>
-        <%= f.hidden_field(:password_confirmation, value: @user.password_confirmation)%>
-    </div>
- 
+
 <%=f.submit  "Update", class: 'btn btn-outline-primary  d-flex flex-start mb-4' %> 
 
 <% end %>
