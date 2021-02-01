@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action   :find_post, only: [:show, :edit, :update, :destroy]
+    before_action  :find_post, only: [:show, :edit, :update, :destroy]
+    before_action :authorize_user!,only:[:edit,:update,:destroy]
 
     def new
         @post = Post.new
@@ -57,5 +58,8 @@ class PostsController < ApplicationController
         @post = Post.find params[:id]
     end
 
-  
+    def authorize_user!
+        redirect_to root_path, alert: 'Only the owner is authorized.' unless can?(:crud, @post)
+    end
+
 end
