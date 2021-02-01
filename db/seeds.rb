@@ -13,6 +13,7 @@ super_user= User.create(
     name: 'Ken',
     email: 'chonlasek.c@gmail.com',
     password: 'concon',
+    admin: true
 )
 
 NUM_USER.times do
