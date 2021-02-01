@@ -10,9 +10,10 @@ class Ability
       if user.admin?
         can :manage, :all
       else
+        can :update, User, :id => user.id
         can :read, :all
       end
-      
+
     alias_action(:create, :read, :update,:delete, to: :crud)
 
     can   (:crud), Post do |post|
@@ -23,5 +24,6 @@ class Ability
     user == comment.user
     end
 
+  
   end
 end
