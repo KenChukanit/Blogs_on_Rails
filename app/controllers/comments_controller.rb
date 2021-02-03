@@ -39,4 +39,5 @@ class CommentsController < ApplicationController
         @comment = Comment.find params[:id]
         redirect_to posts_path, alert: 'Only the owner is authorized.' unless can?(:crud, @comment)
     end
+    
 end
