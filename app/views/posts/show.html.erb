@@ -1,0 +1,65 @@
+<div class=' flex-column flex-start show-post mb-4'>
+  <div>
+      <h2 class="mb-4">
+        <%= @post.title %>
+      </h2>
+      <p class=' d-flex flex-start'>
+        <%= @post.body %>
+      </p>
+      <div>
+      <small class=' mb-4 d-flex flex-start mr-2'>
+        <em>Posted by:   <%= @post.user.name %> </em>
+      </div>
+      <small class='text-muted mb-4 d-flex flex-start mr-2'>
+        <em>Posted:   <%= time_ago_in_words(@post.created_at) %> ago</em>
+      <small>
+      <br>
+      <br>
+      <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-outline-primary '%>
+      <%= link_to("Delete",
+        post_path(@post),
+        method: :delete,
+        class: 'btn btn-outline-primary  mr-4',
+        data: { confirm: 'are you sure to delete this post?' },
+      )
+      %>  
+  </div>
+</div>
+
+
+<div>
+<h3 class="d-flex flex-start" >Comment</h3>
+  <%= form_with model: [@post, @comment], local: true do |f| %>
+  <% if @comment.errors.full_messages.each do |msg|%>
+    <li>
+        <%= msg %>
+    </li>
+<% end %>
+<% end %>
+    <div class="form-group mb-4">
+      <%= f.text_area(:body, class: 'form-control', cols: 150, rows: 4)%>
+    </div>
+      <%=f.submit  "Submit", class: 'btn btn-outline-primary d-flex flex-start' %> 
+    <% end %>
+</div>
+<br>
+
+<% @comments.each do |comment|%>  
+<div  class=' d-flex  '>
+    <div class="d-sm-flex align-self-start flex-column comment-text">
+      <%= comment.body %>
+      <span class=" d-sm-flex align-self-start flex-column comment-time">
+     
+     
+        <em>Commented by:   <%= comment.user.name %> </em>
+     
+        <small class='text-muted mb-4 d-flex flex-start mr-2'>
+        <em>Commented: <%= time_ago_in_words(comment.created_at) %> ago</em>
+          ••• 
+        <%= link_to "Delete",post_comment_path(@post,comment), method: :delete,data: {confirm: "Are you sure to delete this comment?"} %>
+        </small>
+      </span>
+    </div>
+</div>
+<% end %> 
+

@@ -1,0 +1,38 @@
+
+<nav class="d-flex justify-content-between mr-4 mt-4 mb-4 nav-post" >
+    <div class=" d-sm-flex flex-row  col-md-7 flex-start  ">
+    <!-- To Index Page -->
+        <%= link_to "Blog On Rails", posts_path %>
+    </div>
+    <div class=" flex-row col-md-1 ">
+    <!-- To Index Page -->
+        <%= link_to "Home", posts_path%>
+    </div>
+    <div class="flex-row col-md-2 ">
+    <!-- To New Page -->
+        <%= link_to "New Post", new_post_path%>
+    </div>
+    
+    <% if user_signed_in? %>
+    <!-- To Edit path if user is signed in -->
+    <div class="flex-row col-md-1 ">  
+        <%= link_to "#{current_user.name}", edit_user_path(current_user), 
+        data: {confirm: 'Are you sure you want to edit your profile?'}
+        %>
+    </div> 
+    <div class="flex-row col-md-1 "> 
+        <%= link_to "Log out", session_path, method: :delete,
+        data: {confirm: 'Are you sure you want to log out?'}
+        %>
+    </div> 
+    <% else %>
+    <!-- To log in and sign up path if user is not signed in -->
+    <div class="flex-row col-md-1 ">  
+        <%= link_to "Log in", new_session_path %> 
+    </div> 
+    <div class="flex-row col-md-1 ">  
+        <%= link_to "Sign Up", new_user_path %>
+    </div> 
+    <% end %>
+</nav>
+

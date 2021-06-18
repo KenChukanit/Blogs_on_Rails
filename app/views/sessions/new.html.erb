@@ -1,0 +1,15 @@
+<h1>Sign in</h1>
+
+<%= form_with url: session_path, :class=>"form-group", local:true do |f| %>
+    <div class="form-group mb-4">
+        <label class="d-flex flex-start" >Email</label>
+        <%= f.email_field(:email, class: 'form-control')%> 
+    </div>
+    <div class="form-group mb-4">
+        <label class="d-flex flex-start" >Password</label>
+        <%= f.password_field(:password, class: 'form-control')%>
+    </div>
+ 
+<%=f.submit  "Sign In", class: 'btn btn-outline-primary  d-flex flex-start mb-4' %> 
+
+<% end %>
